@@ -3,31 +3,39 @@ package entity
 import effects.skill.Skill
 import effects.status.Status
 import effects.status.stati.Stun
+import entity.hero.Attribute
 
 /**
  * An entity in this game, can be an enemy or an ally.
  * Makes it easier to write generally applicable functions.
  *
  * @property name the name of the entity.
- * @property maxHP the maximum possible HP that the entity can have.
- * @property baseATK the base bonus ATK that should be added to skills.
+ * @param bonusBaseHP the extra base life a unit shall have
+ * @property strength strength of the unit
+ * @property dexterity dexterity of the unit
+ * @property intelligence intelligence of the unit
+ * @property mainAttribute the main attribute of the unit, used for several scalings
+ * @property skills the list of skills that the unit has
  *
  * @author Felix Bücher
  * @version 1.0
  */
 abstract class Entity(
     val name: String,
-    var maxHP: Int,
-    var baseATK: Int,
+    bonusBaseHP: Int,
+    var strength: Int,
+    var dexterity: Int,
+    var intelligence: Int,
+    val mainAttribute: Attribute,
+    val skills: MutableList<Skill> = mutableListOf()
 ) {
-    // Set current = max when creating a unit
+    var damageModifier: Double = 1.0
+    var maxHP: Int = bonusBaseHP + 12 * strength
     var currentHP: Int = maxHP
-    var currentATK: Int = baseATK
-    var skills: MutableList<Skill> = mutableListOf()
-    var currentStatus: MutableList<Status> = mutableListOf()
+    val currentStatus: MutableList<Status> = mutableListOf()
 
     init {
-        this.recalcSkills()
+        recalcSkills()
     }
 
     /**
@@ -100,9 +108,12 @@ abstract class Entity(
 
     /**
      * Recalculate the skill damage for all skills for an entity.
-     * Needs to be called if an entity gets the status WEAK or STRONG!
      */
-    abstract fun recalcSkills()
+    fun recalcSkills() {
+        skills.forEach { skill ->
+            skill.calculateEffectRange(this)
+        }
+    }
 
     /**
      * Handle the userinput for the specified entity.

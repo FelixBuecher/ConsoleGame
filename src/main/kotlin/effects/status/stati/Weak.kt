@@ -1,27 +1,23 @@
 package effects.status.stati
 
-import S_IS_NOT_WEAK
-import S_IS_WEAK
-import S_STATUS_WEAK
 import effects.status.Status
 import entity.Entity
-import newBlock
-import smallSleep
+import util.*
 
 /**
- * A status that reduces the base damage of an entity by 50%.
+ * A status that reduces the damage of an entity by 30%.
  *
  * @author Felix Bücher
  * @version 1.0
  */
 class Weak : Status(
     S_STATUS_WEAK,
-    3
+    3,
+    ::Weak
 ) {
     override fun apply(target: Entity) {
         super.apply(target)
-        target.currentATK = (target.baseATK * 0.5).toInt()
-        target.recalcSkills()
+        target.damageModifier *= 0.7
     }
 
     override fun effect(target: Entity) {
@@ -30,10 +26,9 @@ class Weak : Status(
             remainingDuration--
         } else {
             println(S_IS_NOT_WEAK(target.name))
-            target.currentATK = target.baseATK
-            target.recalcSkills()
+            target.damageModifier /= 0.7
         }
+        medSleep()
         newBlock()
-        smallSleep()
     }
 }

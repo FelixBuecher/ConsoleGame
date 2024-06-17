@@ -1,11 +1,7 @@
 package entity
 
-import S_CANCLE_INDEX
-import S_ITEM_LISTING
-import S_OPEN_BACKPACK
-import S_VALID_SELECTION
 import effects.skill.Skill
-import newBlock
+import util.*
 
 /**
  * A backpack that is to be shared between heroes.
@@ -16,9 +12,7 @@ import newBlock
  * @author Felix Bücher
  * @version 1.0
  */
-class Bag(
-    val items: MutableMap<Skill, Int>
-) {
+class Bag(val items: MutableMap<Skill, Int>) {
     fun open(user: Entity, enemies: List<Entity>, allies: List<Entity>) {
         // Print backpack information
         newBlock()
@@ -28,7 +22,7 @@ class Bag(
         itemPairList.forEachIndexed { index, itemPair ->
             println(S_ITEM_LISTING(index + 1, itemPair.first, itemPair.second))
         }
-        println(S_CANCLE_INDEX(items.size + 1))
+        println(S_CANCEL_INDEX(items.size))
         try {
             // Get userinput
             val input = readln().toInt() - 1

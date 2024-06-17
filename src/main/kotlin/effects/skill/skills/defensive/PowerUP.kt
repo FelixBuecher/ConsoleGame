@@ -2,10 +2,10 @@ package effects.skill.skills.defensive
 
 import effects.skill.SingleTargetSkill
 import effects.skill.SkillType
+import effects.status.stati.Strong
 import entity.Entity
-import util.S_SKILL_HEALING_LIGHT
-import util.S_SKILL_HEALING_LIGHT_D
-import util.calcDamageRange
+import util.S_SKILL_POWER_UP
+import util.S_SKILL_POWER_UP_D
 
 /**
  * A simple single target healing spell, will heal a small amount but has a very small cooldown.
@@ -13,14 +13,15 @@ import util.calcDamageRange
  * @author Felix Bücher
  * @version 1.0
  */
-class HealingLight : SingleTargetSkill(
-    S_SKILL_HEALING_LIGHT,
-    S_SKILL_HEALING_LIGHT_D,
+class PowerUP : SingleTargetSkill(
+    S_SKILL_POWER_UP,
+    S_SKILL_POWER_UP_D,
     SkillType.DEFENSIVE,
     0,
-    2
+    5,
+    Strong()
 ) {
     override fun calculateEffectRange(entity: Entity) {
-        effectRange = calcDamageRange(entity.intelligence, 20, 1.0, 40, 1.0)
+        effectRange = 0..0
     }
 }

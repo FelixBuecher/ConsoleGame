@@ -6,9 +6,8 @@ import entity.Entity
 /**
  * Base class for all skills that can be used by entities.
  *
- * @property name the name of the skill.
+ * @property skillName the name of the skill.
  * @property description a short description about what the skill does.
- * @property effectRange heal or damage of a skill, the final effect will be a random number in the range.
  * @property skillType the type of the skill, so far there are only offensive and defensive skills.
  * @property currentCooldown the initial and current cooldown of a skill.
  * @property maxCooldown the max cooldown of a skill, can be 0 for skills that can be used each round.
@@ -18,14 +17,15 @@ import entity.Entity
  * @version 1.0
  */
 abstract class Skill(
-    val name: String,
+    val skillName: String,
     val description: String,
-    var effectRange: IntRange,
     val skillType: SkillType,
     var currentCooldown: Int,
     val maxCooldown: Int,
     val extraEffect: Status?
 ) {
+    lateinit var effectRange: IntRange
+
     /**
      * Function to use the skill on any entity, either offensively or defensively.
      *
@@ -41,6 +41,12 @@ abstract class Skill(
     fun progressCD() {
         if (currentCooldown > 0) currentCooldown--
     }
+
+    /**
+     * Recalculates the damage of the skill based on its user.
+     * @param entity the entity that will use this skill
+     */
+    abstract fun calculateEffectRange(entity: Entity)
 }
 
 /**

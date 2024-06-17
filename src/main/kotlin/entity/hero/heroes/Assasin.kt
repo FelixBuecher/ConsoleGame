@@ -2,22 +2,28 @@ package entity.hero.heroes
 
 import effects.skill.skills.offensive.BasicAttack
 import entity.Bag
+import entity.hero.Attribute
 import entity.hero.Hero
 
 class Assasin(
     name: String,
-    maxHP: Int,
-    baseATK: Int,
-    bag: Bag
+    bonusBaseHP: Int,
+    strength: Int,
+    dexterity: Int,
+    intelligence: Int,
+    mainAttribute: Attribute,
+    bag: Bag,
 ) : Hero(
     name,
-    maxHP,
-    baseATK,
+    bonusBaseHP,
+    strength,
+    dexterity,
+    intelligence,
+    mainAttribute,
+    mutableListOf(
+        BasicAttack()
+    ),
     bag
 ) {
-    override fun recalcSkills() {
-        skills = mutableListOf(
-            BasicAttack(currentATK..currentATK * 2),
-        )
-    }
+
 }

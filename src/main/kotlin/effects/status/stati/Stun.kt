@@ -1,12 +1,8 @@
 package effects.status.stati
 
-import S_IS_NOT_STUNNED
-import S_IS_STUNNED
-import S_STATUS_STUN
 import effects.status.Status
 import entity.Entity
-import newBlock
-import smallSleep
+import util.*
 
 /**
  * A status that does prevent an entity from takin an action during their round.
@@ -16,7 +12,8 @@ import smallSleep
  */
 class Stun : Status(
     S_STATUS_STUN,
-    2
+    2,
+    ::Stun
 ) {
     override fun effect(target: Entity) {
         if (remainingDuration > 0) {
@@ -25,7 +22,7 @@ class Stun : Status(
         } else {
             println(S_IS_NOT_STUNNED(target.name))
         }
+        medSleep()
         newBlock()
-        smallSleep()
     }
 }

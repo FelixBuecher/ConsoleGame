@@ -1,3 +1,5 @@
+package util
+
 import effects.skill.Skill
 import entity.Entity
 
@@ -27,11 +29,11 @@ const val S_VALID_SELECTION = "${RED}Bitte gib etwas valides ein!$RESET"
 const val S_ENEMY_WIN = "Leider haben die Helden den Kampf verloren!"
 const val S_BACKPACK = "Rucksack"
 
+fun S_ROUND(counter: Int) = "\n${MAGENTA}RUNDE $counter STARTET NUN!$RESET\n"
 fun S_OPEN_BACKPACK(user: Entity) = "${name(user.name)} hat den Rucksack geöffnet und hat folgende Auswahl:"
 fun S_BACKPACK_INDEX(index: Int) = "$index. ${skill("$S_BACKPACK öffnen")}"
-fun S_CANCLE_INDEX(index: Int) = "$index. ${RED}Abbrechen$RESET"
+fun S_CANCEL_INDEX(index: Int) = "${index + 1}. ${RED}Abbrechen$RESET\n"
 fun S_PLAYER_READY(entity: Entity) = "${name(entity.name)} ist am Zug ${hp(entity)}, wähle deine Aktion aus:"
-fun S_ENEMY_ATTACK(user: Entity, skillName: String) = "${name(user.name)} benutzt ${skill(skillName)} und greift an!"
 fun S_HERO_WIN(heroes: List<Entity>) =
     "Die Helden ${
         heroes.map { it.name }.joinToString { name(it) }
@@ -51,7 +53,7 @@ const val S_STATUS_WEAK = "Geschwächt"
 ////////////////////////////////////  Item strings   ///////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 fun S_ITEM_LISTING(index: Int, item: Skill, quantity: Int) =
-    "$index. ${skill(item.name)}: ${item.description} ${if (quantity > 0) skillInfo("(noch $quantity übrig)") else ""}"
+    "$index. ${skill(item.skillName)}: ${item.description} ${if (quantity > 0) skillInfo("(noch $quantity übrig)") else ""}"
 
 
 const val S_ITEM_HEALING_POTION = "Heilungstrank"
@@ -62,8 +64,10 @@ const val S_ITEM_HEALING_POTION_D =
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////  Skill strings   //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
+fun S_USE_SKILL(user: Entity, skillName: String) = "${name(user.name)} benutzt ${skill(skillName)}!"
+
 fun S_SKILL_LISTING(index: Int, skill: Skill) =
-    "$index. ${skill(skill.name)}: ${skill.description} ${if (skill.currentCooldown > 0) skillInfo("(verbleibender Cooldown ${skill.currentCooldown})") else ""}"
+    "$index. ${skill(skill.skillName)}: ${skill.description} ${if (skill.currentCooldown > 0) skillInfo("(verbleibender Cooldown ${skill.currentCooldown})") else ""}"
 
 fun S_SKILL_TARGET_SELECTION(index: Int, entity: Entity) = "${index + 1}. ${name(entity.name)} ${hp(entity)}"
 
@@ -75,11 +79,13 @@ fun S_SKILLHIT(target: Entity, skillName: String, damage: Int) =
     }"
 
 fun S_SKILLHEAL(target: Entity, skillName: String, effect: Int) =
-    "${name(target.name)} wurde durch ${skill(skillName)} ${if (effect != 0) "um $GREEN${-effect} geheilt$RESET" else "beeinflusst"}! ${
-        hp(
-            target
-        )
-    }"
+    "${name(target.name)} wurde durch ${skill(skillName)} ${
+        if (effect != 0) "um $GREEN${-effect} geheilt$RESET ${
+            hp(
+                target
+            )
+        }" else "beeinflusst"
+    }!"
 
 val S_SKILL_BASIC_ATTACK = "Einfacher Angriff"
 val S_SKILL_BASIC_ATTACK_D = "Greift einen Gegner an und fügt ihm ${skillInfo("leichten Schaden")} zu!"
@@ -100,6 +106,9 @@ val S_SKILL_METEOR_D =
 
 val S_SKILL_HEALING_LIGHT = "Heiliges Licht"
 val S_SKILL_HEALING_LIGHT_D = "${skillInfo("Heilt")} einen Verbündeten um ein ${skillInfo("wenig HP")}."
+
+val S_SKILL_POWER_UP = "Verstärken"
+val S_SKILL_POWER_UP_D = "Verleiht einem Verbündeten den ${skillInfo("Verstärkt")} Buff."
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -128,11 +137,11 @@ fun S_IS_BURN(entity: Entity, remainingDuration: Int, damage: Int) =
 fun S_IS_NOT_BURN(name: String) = "${name(name)} brennt nicht mehr!"
 
 fun S_IS_WEAK(name: String, remainingDuration: Int) =
-    "${name(name)} ist noch für $remainingDuration Runden geschwächt und macht nur 50% Basisschaden!"
+    "${name(name)} ist noch für $remainingDuration Runden geschwächt und macht 30% weniger Schaden!"
 
 fun S_IS_NOT_WEAK(name: String) = "${name(name)} ist nicht mehr geschwächt!"
 fun S_IS_STRONG(name: String, remainingDuration: Int) =
-    "${name(name)} ist noch für $remainingDuration Runden gestärkt und macht 150% Basisschaden!"
+    "${name(name)} ist noch für $remainingDuration Runden gestärkt und macht 30% mehr Schaden!"
 
 fun S_IS_NOT_STRONG(name: String) = "${name(name)} ist nicht mehr verstärkt!"
 

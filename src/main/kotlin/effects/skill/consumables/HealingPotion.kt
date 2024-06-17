@@ -1,9 +1,10 @@
 package effects.skill.consumables
 
-import S_ITEM_HEALING_POTION
-import S_ITEM_HEALING_POTION_D
 import effects.skill.SingleTargetSkill
 import effects.skill.SkillType
+import entity.Entity
+import util.S_ITEM_HEALING_POTION
+import util.S_ITEM_HEALING_POTION_D
 
 /**
  * A simple single target healing potion, will heal a small amount.
@@ -14,8 +15,15 @@ import effects.skill.SkillType
 class HealingPotion : SingleTargetSkill(
     S_ITEM_HEALING_POTION,
     S_ITEM_HEALING_POTION_D,
-    45..55,
     SkillType.DEFENSIVE,
     0,
     0
-)
+) {
+    init {
+        effectRange = 45..55
+    }
+
+    override fun calculateEffectRange(entity: Entity) {
+        effectRange = 45..55
+    }
+}

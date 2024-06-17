@@ -1,11 +1,11 @@
 package effects.status.stati
 
-import S_IS_POISON
-import S_STATUS_POISON
 import effects.status.Status
 import entity.Entity
-import newBlock
-import smallSleep
+import util.S_IS_POISON
+import util.S_STATUS_POISON
+import util.medSleep
+import util.newBlock
 
 /**
  * A status that deals some damage and does not get removed on its own, unless a certain spell or item is used.
@@ -16,13 +16,14 @@ import smallSleep
  */
 class Poison : Status(
     S_STATUS_POISON,
-    1
+    1,
+    ::Poison
 ) {
     override fun effect(target: Entity) {
         val damage = (target.maxHP * 0.04).toInt()
         target.getAttacked(damage)
         println(S_IS_POISON(target, damage))
+        medSleep()
         newBlock()
-        smallSleep()
     }
 }

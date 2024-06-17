@@ -1,27 +1,23 @@
 package effects.status.stati
 
-import S_IS_NOT_STRONG
-import S_IS_STRONG
-import S_STATUS_STRONG
 import effects.status.Status
 import entity.Entity
-import newBlock
-import smallSleep
+import util.*
 
 /**
- * A status that increases the base damage of an entity by 50%.
+ * A status that increases the damage of an entity by 30%.
  *
  * @author Felix Bücher
  * @version 1.0
  */
 class Strong : Status(
     S_STATUS_STRONG,
-    3
+    3,
+    ::Strong
 ) {
     override fun apply(target: Entity) {
         super.apply(target)
-        target.currentATK = (target.baseATK * 1.5).toInt()
-        target.recalcSkills()
+        target.damageModifier *= 1.3
     }
 
     override fun effect(target: Entity) {
@@ -30,10 +26,9 @@ class Strong : Status(
             remainingDuration--
         } else {
             println(S_IS_NOT_STRONG(target.name))
-            target.currentATK = target.baseATK
-            target.recalcSkills()
+            target.damageModifier /= 1.3
         }
+        medSleep()
         newBlock()
-        smallSleep()
     }
 }

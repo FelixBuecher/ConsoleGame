@@ -17,7 +17,8 @@ import entity.Entity
  */
 abstract class Status(
     val name: String,
-    var remainingDuration: Int
+    var remainingDuration: Int,
+    val classType: () -> Status
 ) {
 
     /**
@@ -39,4 +40,8 @@ abstract class Status(
      * @param target the entity to affect.
      */
     abstract fun effect(target: Entity)
+
+    fun factory(): Status {
+        return classType()
+    }
 }

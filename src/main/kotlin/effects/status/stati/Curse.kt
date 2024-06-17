@@ -1,12 +1,8 @@
 package effects.status.stati
 
-import S_IS_CURSE
-import S_IS_NOT_CURSE
-import S_STATUS_CURSE
 import effects.status.Status
 import entity.Entity
-import newBlock
-import smallSleep
+import util.*
 
 /**
  * A status that deals some damage and is removed once a unit falls under a certain life threshold.
@@ -17,7 +13,8 @@ import smallSleep
  */
 class Curse : Status(
     S_STATUS_CURSE,
-    1
+    1,
+    ::Curse
 ) {
     override fun effect(target: Entity) {
         if (target.currentHP > target.maxHP / 2) {
@@ -32,7 +29,7 @@ class Curse : Status(
             println(S_IS_NOT_CURSE(target.name))
             remainingDuration = 0
         }
+        medSleep()
         newBlock()
-        smallSleep()
     }
 }

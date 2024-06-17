@@ -1,12 +1,12 @@
 package effects.status.stati
 
-import S_IS_BURN
-import S_IS_NOT_BURN
-import S_STATUS_BURN
+import util.S_IS_BURN
+import util.S_IS_NOT_BURN
+import util.S_STATUS_BURN
 import effects.status.Status
 import entity.Entity
-import newBlock
-import smallSleep
+import util.medSleep
+import util.newBlock
 
 /**
  * A status that deals some damage and does get removed on its own after some rounds.
@@ -17,7 +17,8 @@ import smallSleep
  */
 class Burn : Status(
     S_STATUS_BURN,
-    2
+    2,
+    ::Burn
 ) {
     override fun effect(target: Entity) {
         if (remainingDuration > 0) {
@@ -27,7 +28,7 @@ class Burn : Status(
         } else {
             println(S_IS_NOT_BURN(target.name))
         }
+        medSleep()
         newBlock()
-        smallSleep()
     }
 }
