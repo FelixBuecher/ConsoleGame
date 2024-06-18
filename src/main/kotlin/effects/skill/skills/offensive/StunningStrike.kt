@@ -20,7 +20,7 @@ class StunningStrike : SingleTargetSkill(
     SkillType.OFFENSIVE,
     2,
     4,
-    Stun()
+    listOf(Stun())
 ) {
     override fun calculateEffectRange(entity: Entity) {
         effectRange = calcDamageRange(entity.strength, 2, 0.6, 5, 1.0)

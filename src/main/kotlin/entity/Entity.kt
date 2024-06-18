@@ -103,7 +103,7 @@ abstract class Entity(
      * @param status the status effect to remove.
      */
     fun removeStatus(status: Status) {
-        currentStatus.remove(status)
+        currentStatus.removeIf { it.name == status.name }
     }
 
     /**

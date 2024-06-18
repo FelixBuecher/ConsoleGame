@@ -1,5 +1,6 @@
 package entity.hero.heroes
 
+import effects.skill.skills.defensive.Cleanse
 import effects.skill.skills.defensive.HealingLight
 import effects.skill.skills.defensive.PowerUP
 import effects.skill.skills.offensive.BasicAttack
@@ -7,7 +8,7 @@ import entity.Bag
 import entity.hero.Attribute
 import entity.hero.Hero
 
-class Healer(
+class Priest(
     name: String,
     bonusBaseHP: Int,
     strength: Int,
@@ -25,7 +26,8 @@ class Healer(
     mutableListOf(
         BasicAttack(),
         HealingLight(),
-        PowerUP()
+        PowerUP(),
+        Cleanse()
     ),
     bag
 )

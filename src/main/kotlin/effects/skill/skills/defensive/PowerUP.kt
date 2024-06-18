@@ -8,7 +8,7 @@ import util.S_SKILL_POWER_UP
 import util.S_SKILL_POWER_UP_D
 
 /**
- * A simple single target healing spell, will heal a small amount but has a very small cooldown.
+ * A spell that adds the status strong, which increases the damage an entity deals.
  *
  * @author Felix Bücher
  * @version 1.0
@@ -19,7 +19,7 @@ class PowerUP : SingleTargetSkill(
     SkillType.DEFENSIVE,
     0,
     5,
-    Strong()
+    listOf(Strong())
 ) {
     override fun calculateEffectRange(entity: Entity) {
         effectRange = 0..0

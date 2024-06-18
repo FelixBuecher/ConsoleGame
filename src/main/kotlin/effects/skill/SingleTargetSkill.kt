@@ -24,14 +24,16 @@ abstract class SingleTargetSkill(
     skillType: SkillType,
     currentCooldown: Int = 0,
     maxCooldown: Int = 0,
-    extraEffect: Status? = null,
+    extraEffects: List<Status> = listOf(),
+    extraEffectsRemove: List<Status> = listOf(),
 ) : Skill(
     skillName,
     description,
     skillType,
     currentCooldown,
     maxCooldown,
-    extraEffect
+    extraEffects,
+    extraEffectsRemove
 ) {
 
     override fun use(user: Entity, enemies: List<Entity>, allies: List<Entity>) {
@@ -66,7 +68,12 @@ abstract class SingleTargetSkill(
                 SkillType.DEFENSIVE -> -effectRange.random()
             }
             target.getAttacked(effect)
-            extraEffect?.factory()?.apply(target)
+            extraEffects.forEach { status ->
+                status.factory().apply(target)
+            }
+            extraEffectRemove.forEach { status ->
+                target.removeStatus(status)
+            }
 
             // Put skill on cooldown
             currentCooldown = maxCooldown

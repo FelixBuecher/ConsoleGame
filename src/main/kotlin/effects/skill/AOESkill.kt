@@ -23,14 +23,16 @@ abstract class AOESkill(
     skillType: SkillType,
     currentCooldown: Int = 0,
     maxCooldown: Int = 0,
-    extraEffect: Status? = null,
+    extraEffects: List<Status> = listOf(),
+    extraEffectsRemove: List<Status> = listOf(),
 ) : Skill(
     name,
     description,
     skillType,
     currentCooldown,
     maxCooldown,
-    extraEffect
+    extraEffects,
+    extraEffectsRemove
 ) {
     override fun use(user: Entity, enemies: List<Entity>, allies: List<Entity>) {
         newBlock()
@@ -50,8 +52,14 @@ abstract class AOESkill(
                 SkillType.DEFENSIVE -> -effectRange.random()
             }
             target.getAttacked(effect)
-            extraEffect?.factory()?.apply(target)
-
+            extraEffects.forEach { status ->
+                status.factory().apply(target)
+            }
+            extraEffectRemove.forEach { status ->
+                targets.forEach { entity ->
+                    entity.removeStatus(status)
+                }
+            }
 
             // Show info to the user, how the skill affected the game
             when (skillType) {

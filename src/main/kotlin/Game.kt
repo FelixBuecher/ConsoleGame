@@ -5,8 +5,8 @@ import entity.enemy.enemies.Boss
 import entity.hero.Attribute
 import entity.hero.Hero
 import entity.hero.heroes.Assasin
-import entity.hero.heroes.Healer
 import entity.hero.heroes.Mage
+import entity.hero.heroes.Priest
 import entity.hero.heroes.Warrior
 import util.S_ENEMY_WIN
 import util.S_HERO_WIN
@@ -36,12 +36,12 @@ class Game {
             Warrior("Felix", 90, 25, 10, 5, Attribute.STRENGTH, bag),
             Mage("Bobby", 120, 5, 10, 35, Attribute.INTELLIGENCE, bag),
             Assasin("Dennis", 70, 10, 30, 10, Attribute.DEXTERITY, bag),
-            Healer("Lia", 120, 5, 15, 25, Attribute.INTELLIGENCE, bag)
+            Priest("Lia", 120, 5, 15, 25, Attribute.INTELLIGENCE, bag)
         )
 
         // Initialize the enemy party
         val enemyParty = mutableListOf<Enemy>(
-            Boss("Deine Mudda", 1000, 50, 30, 20, Attribute.STRENGTH)
+            Boss("Lich King", 1000, 60, 35, 20, Attribute.STRENGTH)
         )
 
         var roundCounter = 0

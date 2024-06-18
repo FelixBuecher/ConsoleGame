@@ -1,7 +1,8 @@
 package entity.enemy.enemies
 
 import effects.skill.skills.offensive.BasicAttack
-import effects.skill.skills.offensive.Meteor
+import effects.skill.skills.offensive.FrozenStrike
+import effects.skill.skills.offensive.PoisonCloud
 import entity.Entity
 import entity.enemy.Enemy
 import entity.hero.Attribute
@@ -22,7 +23,8 @@ class Boss(
     mainAttribute,
     mutableListOf(
         BasicAttack(),
-        Meteor()
+        FrozenStrike(),
+        PoisonCloud()
     )
 ) {
     override fun selectAction(enemies: List<Entity>, allies: List<Entity>) {

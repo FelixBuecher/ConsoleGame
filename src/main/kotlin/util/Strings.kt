@@ -87,6 +87,10 @@ fun S_SKILLHEAL(target: Entity, skillName: String, effect: Int) =
         }" else "beeinflusst"
     }!"
 
+////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////    Offensive Skills      /////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
 val S_SKILL_BASIC_ATTACK = "Einfacher Angriff"
 val S_SKILL_BASIC_ATTACK_D = "Greift einen Gegner an und fügt ihm ${skillInfo("leichten Schaden")} zu!"
 
@@ -100,16 +104,32 @@ val S_SKILL_STUNNING_STRIKE_D =
 
 val S_SKILL_METEOR = "Meteor"
 val S_SKILL_METEOR_D =
-    "Ein starker Flächenangriff, welcher gegnern ${skillInfo("enormen Schaden")} zufügt und Diese zusätzlich ${
+    "Ein starker Flächenangriff, welcher gegnern ${skillInfo("enormen Schaden")} zufügt und diese zusätzlich ${
         skillInfo("verbrennt")
     }. Hat einen hohen cooldown!"
 
+val S_POISON_CLOUD = "Giftwolke"
+val S_POISON_CLOUD_D =
+    "Ein moderater Flächenangriff, welcher gegnern ${skillInfo("etwas schaden")} zufügt und diese zusätzlich ${
+        skillInfo("vergiftet")
+    }."
+
+val S_SKILL_FROZEN_STRIKE = "Frostschlag"
+val S_SKILL_FROZEN_STRIKE_D =
+    "Greift einen Gegner mit der Kraft des Eises an und fügt ihm ${skillInfo("hohen Schaden")} zu!"
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////    Defensive Skills      /////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 val S_SKILL_HEALING_LIGHT = "Heiliges Licht"
 val S_SKILL_HEALING_LIGHT_D = "${skillInfo("Heilt")} einen Verbündeten um ein ${skillInfo("wenig HP")}."
 
 val S_SKILL_POWER_UP = "Verstärken"
 val S_SKILL_POWER_UP_D = "Verleiht einem Verbündeten den ${skillInfo("Verstärkt")} Buff."
 
+val S_SKILL_CLEANSE = "Reinigung"
+val S_SKILL_CLEANSE_D = "Reinigt einen Verbündeten und ${skillInfo("entfernt Vergiftung")}."
 
 ////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////  Status effect strings   /////////////////////////////////
