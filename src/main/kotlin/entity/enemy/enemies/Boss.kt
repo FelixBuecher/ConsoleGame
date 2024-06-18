@@ -7,16 +7,31 @@ import entity.Entity
 import entity.enemy.Enemy
 import entity.hero.Attribute
 
+
+/**
+ * Class for the boss in the game.
+ *
+ * @property name the name of the enemy.
+ * @param bonusBaseHP the extra base life a unit shall have.
+ * @property strength strength of the unit.
+ * @property dexterity dexterity of the unit.
+ * @property intelligence intelligence of the unit.
+ * @property mainAttribute the main attribute of the unit, used for several scaling.
+ * @property skills the list of skills that the unit has.
+ *
+ * @author Felix Bücher
+ * @version 1.0
+ */
 class Boss(
     name: String,
-    maxHP: Int,
+    bonusBaseHP: Int,
     strength: Int,
     dexterity: Int,
     intelligence: Int,
     mainAttribute: Attribute,
 ) : Enemy(
     name,
-    maxHP,
+    bonusBaseHP,
     strength,
     dexterity,
     intelligence,

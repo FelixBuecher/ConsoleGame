@@ -10,12 +10,12 @@ import entity.hero.Attribute
  * Makes it easier to write generally applicable functions.
  *
  * @property name the name of the entity.
- * @param bonusBaseHP the extra base life a unit shall have
- * @property strength strength of the unit
- * @property dexterity dexterity of the unit
- * @property intelligence intelligence of the unit
- * @property mainAttribute the main attribute of the unit, used for several scalings
- * @property skills the list of skills that the unit has
+ * @param bonusBaseHP the extra base life a unit shall have.
+ * @property strength strength of the unit.
+ * @property dexterity dexterity of the unit.
+ * @property intelligence intelligence of the unit.
+ * @property mainAttribute the main attribute of the unit, used for several scaling.
+ * @property skills the list of skills that the unit has.
  *
  * @author Felix Bücher
  * @version 1.0

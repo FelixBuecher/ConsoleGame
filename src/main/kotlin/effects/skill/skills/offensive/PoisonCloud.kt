@@ -4,19 +4,19 @@ import effects.skill.AOESkill
 import effects.skill.SkillType
 import effects.status.stati.Poison
 import entity.Entity
-import util.S_SKILL_METEOR
-import util.S_SKILL_METEOR_D
+import util.S_SKILL_POISON_CLOUD
+import util.S_SKILL_POISON_CLOUD_D
 import util.calcDamageRange
 
 /**
- * A very strong AOE spell that does massive damage but has a high cooldown.
+ * A weak AOE skill that applies the poison status effect.
  *
  * @author Felix Bücher
  * @version 1.0
  */
 class PoisonCloud : AOESkill(
-    S_SKILL_METEOR,
-    S_SKILL_METEOR_D,
+    S_SKILL_POISON_CLOUD,
+    S_SKILL_POISON_CLOUD_D,
     SkillType.OFFENSIVE,
     0,
     6,

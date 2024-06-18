@@ -41,6 +41,11 @@ abstract class Status(
      */
     abstract fun effect(target: Entity)
 
+    /**
+     * Used to create a new instance of a status, very important for AOE skills,
+     * otherwise all hit entities would have the same status that shares its duration etc.
+     * @return the new instance of the desired status.
+     */
     fun factory(): Status {
         return classType()
     }

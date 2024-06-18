@@ -12,8 +12,12 @@ import util.S_VALID_SELECTION
  * Class for the heroes in the game, they don't differ much from entities, except that they have a backpack.
  *
  * @property name the name of the hero.
- * @property maxHP the maximum health points that the hero can have.
- * @property baseATK the basic damage of a hero, used for skill damage calculation.
+ * @param bonusBaseHP the extra base life a unit shall have.
+ * @property strength strength of the unit.
+ * @property dexterity dexterity of the unit.
+ * @property intelligence intelligence of the unit.
+ * @property mainAttribute the main attribute of the unit, used for several scaling.
+ * @property skills the list of skills that the unit has.
  * @property bag the shared backpack of the heroes.
  *
  * @author Felix Bücher

@@ -108,8 +108,8 @@ val S_SKILL_METEOR_D =
         skillInfo("verbrennt")
     }. Hat einen hohen cooldown!"
 
-val S_POISON_CLOUD = "Giftwolke"
-val S_POISON_CLOUD_D =
+val S_SKILL_POISON_CLOUD = "Giftwolke"
+val S_SKILL_POISON_CLOUD_D =
     "Ein moderater Flächenangriff, welcher gegnern ${skillInfo("etwas schaden")} zufügt und diese zusätzlich ${
         skillInfo("vergiftet")
     }."

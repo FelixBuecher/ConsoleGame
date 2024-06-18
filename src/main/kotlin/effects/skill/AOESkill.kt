@@ -12,7 +12,8 @@ import util.*
  * @property skillType the type of the skill, so far there are only offensive and defensive skills.
  * @property currentCooldown the initial and current cooldown of a skill.
  * @property maxCooldown the max cooldown of a skill, can be 0 for skills that can be used each round.
- * @property extraEffect if the skill can apply an extra status effect it is to be added here.
+ * @property extraEffects if the skill can apply extra status effects it is to be added here.
+ * @property extraEffectRemove if the skill can remove status effects it is to be added here.
  *
  * @author Felix Bücher
  * @version 1.0

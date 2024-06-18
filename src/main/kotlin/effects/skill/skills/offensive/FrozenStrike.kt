@@ -7,6 +7,13 @@ import util.S_SKILL_FROZEN_STRIKE
 import util.S_SKILL_FROZEN_STRIKE_D
 import util.calcDamageRange
 
+/**
+ * A strike that has a hybrid scaling for its damage calculation.
+ * Should deal significant amount of damage.
+ *
+ * @author Felix Bücher
+ * @version 1.0
+ */
 class FrozenStrike : SingleTargetSkill(
     S_SKILL_FROZEN_STRIKE,
     S_SKILL_FROZEN_STRIKE_D,
